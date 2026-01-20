@@ -1,0 +1,32 @@
+table DimCountry
+	lineageTag: 1e941171-9b49-48d9-a49f-24ac55382ab8
+
+	column RegionID
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 53b9ab49-139d-43da-abc6-32e70db38f1e
+		summarizeBy: none
+		sourceColumn: RegionID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: f4dd58e9-906e-487c-a5ef-1fbef0604693
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimCountry = m
+		mode: directQuery
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-AMT4A81", "BBSDW"),
+				    dbo_DimCountry = Source{[Schema="dbo",Item="DimCountry"]}[Data]
+				in
+				    dbo_DimCountry
+

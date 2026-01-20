@@ -1,0 +1,117 @@
+table FactTrade
+	lineageTag: 7dd73ead-662d-4ba5-aff8-55c9aad011e9
+
+	measure PrvExports = CALCULATE(SUM(FactTrade[Exports]),DATEADD(DimTime[FullDate],-1,YEAR))
+		formatString: 0
+		lineageTag: 3699bd5b-85ab-4d20-93cb-976d64bb1d83
+
+	measure PrvImports = CALCULATE(SUM(FactTrade[Imports]),DATEADD(DimTime[FullDate],-1,YEAR))
+		formatString: 0
+		lineageTag: d82d3c54-6994-447c-8a5f-2c9e137f4f6a
+
+	measure TradeBalance = SUM(FactTrade[Exports])-SUM(FactTrade[Imports])
+		formatString: 0
+		lineageTag: 7d98d6bd-b161-486f-ab25-6dc1d65bc1b3
+
+	measure PrvTradeBalance = CALCULATE(FactTrade[TradeBalance],DATEADD(DimTime[FullDate],-1,YEAR))
+		formatString: 0
+		lineageTag: d5561af9-3cc9-4eda-9ab5-f1883b9d38bd
+
+	measure Sum = CALCULATE(SUM(FactTrade[Exports])+SUM(FactTrade[Imports]))
+		formatString: 0
+		lineageTag: 78d090da-7028-4663-a305-22e63d5085c1
+
+	column TradeID
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: f075a4c2-2de2-4b11-a2cf-214a013623f6
+		summarizeBy: count
+		sourceColumn: TradeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Imports
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: aed0187d-2cb4-4040-afc4-a2cb01610200
+		summarizeBy: sum
+		sourceColumn: Imports
+
+		annotation SummarizationSetBy = Automatic
+
+	column Exports
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: aa8a569b-3bf0-4191-91ac-6fff90b2705a
+		summarizeBy: sum
+		sourceColumn: Exports
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: dateTime
+		formatString: Long Date
+		sourceProviderType: date
+		lineageTag: 07bb7ee9-f2a4-4295-b3a8-0de0cb314f04
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Country
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 7755db71-f3bf-4d2c-be7c-aa69df769986
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Composition
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: cf4fc457-7633-440b-956c-3d359af71888
+		summarizeBy: none
+		sourceColumn: Composition
+
+		annotation SummarizationSetBy = Automatic
+
+	column Account
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 81075f78-afc3-4005-9219-6c3d72f38004
+		summarizeBy: none
+		sourceColumn: Account
+
+		annotation SummarizationSetBy = Automatic
+
+	column Route
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: fbde9170-8013-4ba6-a50d-0d5e6e520e9f
+		summarizeBy: none
+		sourceColumn: Route
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactTrade = m
+		mode: directQuery
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-AMT4A81", "BBSDW"),
+				    dbo_FactTrade = Source{[Schema="dbo",Item="FactTrade"]}[Data]
+				in
+				    dbo_FactTrade
+
+	annotation PBI_ResultType = Table
+

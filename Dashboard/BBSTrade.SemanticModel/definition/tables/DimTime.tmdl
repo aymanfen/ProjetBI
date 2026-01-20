@@ -1,0 +1,69 @@
+table DimTime
+	lineageTag: f6db7aa3-14c3-45b2-883e-1bc57a83185d
+	dataCategory: Time
+
+	column FullDate
+		dataType: dateTime
+		isKey
+		isNullable: false
+		formatString: Long Date
+		sourceProviderType: date
+		lineageTag: 71179c40-5068-4317-a2f8-7ae759c63286
+		summarizeBy: none
+		sourceColumn: FullDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 9cecd364-e22d-4e74-a7d4-5507db8ac20f
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 9c07ae75-a335-4337-beba-a3fd6ce097b9
+		summarizeBy: none
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 0f4e3b4e-35bf-40f8-b93f-213887ede8d6
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: b245cc6d-3c6b-400c-9a3f-17e4e979ef49
+		summarizeBy: none
+		sourceColumn: Day
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimTime = m
+		mode: directQuery
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-AMT4A81", "BBSDW"),
+				    dbo_DimTime = Source{[Schema="dbo",Item="DimTime"]}[Data]
+				in
+				    dbo_DimTime
+
+	annotation PBI_ResultType = Table
+

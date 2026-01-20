@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="22"
-  DTS:VersionGUID="{C8121DA0-D5F2-4CD9-B85E-81FDA203BAE9}">
+  DTS:VersionBuild="24"
+  DTS:VersionGUID="{6EC6A3F6-4676-42BA-BA90-2E5F2153FBE6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -1105,7 +1105,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{920D9920-D491-4C48-9551-4509ED48A9E5}"
-          SQLTask:SqlStatementSource="WITH DateCTE AS (SELECT CAST('2020-01-01' AS DATE) AS FullDate&#xA;                                      UNION ALL&#xA;                                      SELECT DATEADD([DAY], 1, FullDate) AS Expr1&#xA;                                      FROM     DateCTE AS DateCTE_2&#xA;                                      WHERE  (FullDate &lt; CAST('2025-12-31' AS DATE)))&#xA;    INSERT  &#xA;    INTO        DimTime(FullDate, [Year], Quarter, [Month], [Day])&#xA;                          SELECT FullDate, YEAR(FullDate) AS Year, DATEPART(QUARTER, FullDate) AS Quarter, MONTH(FullDate) AS Month, DAY(FullDate) AS Day&#xA;                          FROM     DateCTE AS DateCTE_1 OPTION (MAXRECURSION 0)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="WITH DateCTE AS (SELECT CAST('2020-01-01' AS DATE) AS FullDate&#xA;                                      UNION ALL&#xA;                                      SELECT DATEADD([DAY], 1, FullDate) AS Expr1&#xA;                                      FROM     DateCTE AS DateCTE_2&#xA;                                      WHERE  (FullDate &lt; CAST('2024-12-31' AS DATE)))&#xA;    INSERT  &#xA;    INTO        DimTime(FullDate, [Year], Quarter, [Month], [Day])&#xA;                          SELECT FullDate, YEAR(FullDate) AS Year, DATEPART(QUARTER, FullDate) AS Quarter, MONTH(FullDate) AS Month, DAY(FullDate) AS Day&#xA;                          FROM     DateCTE AS DateCTE_1 OPTION (MAXRECURSION 0)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -2859,7 +2859,7 @@ where [refTable].[Year] = ?</property>
         <NodeLayout
           Size="165.6,41.6"
           Id="Package\PopulateRouteDim"
-          TopLeft="559.183674659743,181.34453765617" />
+          TopLeft="548.46938892265,181.34453765617" />
         <NodeLayout
           Size="165.6,41.6"
           Id="Package\PopulateTradeFact"
@@ -2968,30 +2968,30 @@ where [refTable].[Year] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="641.983674659743,222.94453765617">
+          TopLeft="631.26938892265,222.94453765617">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-122.712925487207,158.315966211321"
+              EndConnector="-111.998639750113,158.315966211321"
               Start="0,0"
-              End="-122.712925487207,150.815966211321">
+              End="-111.998639750113,150.815966211321">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,90.0805885332345" />
+                    End="0,90.0805885332347" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,90.0805885332345"
-                    Point2="0,94.0805885332345"
-                    Point3="-4,94.0805885332345" />
+                    Point1="0,90.0805885332347"
+                    Point2="0,94.0805885332347"
+                    Point3="-4,94.0805885332347" />
                   <mssgle:LineSegment
-                    End="-118.712925487207,94.0805885332345" />
+                    End="-107.998639750113,94.0805885332347" />
                   <mssgle:CubicBezierSegment
-                    Point1="-118.712925487207,94.0805885332345"
-                    Point2="-122.712925487207,94.0805885332345"
-                    Point3="-122.712925487207,98.0805885332345" />
+                    Point1="-107.998639750113,94.0805885332347"
+                    Point2="-111.998639750113,94.0805885332347"
+                    Point3="-111.998639750113,98.0805885332347" />
                   <mssgle:LineSegment
-                    End="-122.712925487207,150.815966211321" />
+                    End="-111.998639750113,150.815966211321" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3710,6 +3710,65 @@ where [refTable].[Year] = ?</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
+    design-time-name="Package\PopulateTradeFact\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\PopulateTradeFact\CompositionLookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimComposition]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\PopulateTradeFact\TimeLookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimTime]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\PopulateTradeFact\Excel Source">
     <Properties>
       <Property>
@@ -3723,35 +3782,12 @@ where [refTable].[Year] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\PopulateTradeFact\TimeLookup">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DimTime]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\PopulateTradeFact\AccountLookup">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -3761,30 +3797,7 @@ where [refTable].[Year] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\PopulateTradeFact\CompositionLookup">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DimComposition]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -3797,7 +3810,7 @@ where [refTable].[Year] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -3807,7 +3820,7 @@ where [refTable].[Year] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -3820,7 +3833,7 @@ where [refTable].[Year] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -3830,23 +3843,10 @@ where [refTable].[Year] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\PopulateTradeFact\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

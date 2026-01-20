@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "BBSTrade"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "5b047dab-d71b-4921-b6be-4fed5f17fb59"
+  }
+}

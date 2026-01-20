@@ -1,0 +1,34 @@
+table DimAccount
+	lineageTag: a267e190-b039-4737-b45a-c7c1f47120fc
+
+	column AccountID
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: f3b90f45-bd82-4322-a337-6d88b45d7056
+		summarizeBy: none
+		sourceColumn: AccountID
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountType
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: d14964be-057c-4a04-b995-b1c07d2c3486
+		summarizeBy: none
+		sourceColumn: AccountType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimAccount = m
+		mode: directQuery
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-AMT4A81", "BBSDW"),
+				    dbo_DimAccount = Source{[Schema="dbo",Item="DimAccount"]}[Data]
+				in
+				    dbo_DimAccount
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,20 @@
+relationship 5f7d0130-539c-1857-24bf-b24fa0f42f03
+	fromColumn: FactTrade.Year
+	toColumn: DimTime.FullDate
+
+relationship 43188eb1-a963-ae6f-724b-0b05b14ee159
+	fromColumn: FactTrade.Route
+	toColumn: DimRoute.RouteID
+
+relationship c3706e4c-1202-3852-a68c-4365f222b059
+	fromColumn: FactTrade.Country
+	toColumn: DimCountry.RegionID
+
+relationship 11f1e935-7382-a2a1-1cf8-4ea4ba32cbd7
+	fromColumn: FactTrade.Composition
+	toColumn: DimComposition.CompositionID
+
+relationship f9f0bf21-ab72-0192-25a8-db1ae383b87a
+	fromColumn: FactTrade.Account
+	toColumn: DimAccount.AccountID
+

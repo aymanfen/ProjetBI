@@ -1,0 +1,32 @@
+table DimComposition
+	lineageTag: 3d87f20c-1c5d-4d8e-84b3-aee08407e330
+
+	column CompositionID
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: c7110a8e-9e81-4d3a-924e-1b060b41b6ab
+		summarizeBy: none
+		sourceColumn: CompositionID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CompositionType
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: 9894cb42-9912-41b9-87f5-4a52cc1ad684
+		summarizeBy: none
+		sourceColumn: CompositionType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimComposition = m
+		mode: directQuery
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-AMT4A81", "BBSDW"),
+				    dbo_DimComposition = Source{[Schema="dbo",Item="DimComposition"]}[Data]
+				in
+				    dbo_DimComposition
+

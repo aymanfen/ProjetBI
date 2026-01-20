@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "BBSTrade"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "18b9789c-df88-45ca-bed0-c5c91969eb7a"
+  }
+}

@@ -1,0 +1,34 @@
+table DimRoute
+	lineageTag: 3084d0a6-7402-4fb0-a8ac-15dd5eb55449
+
+	column RouteID
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 76ebf601-a7b6-4d2b-87b1-c1aa6f5d47d4
+		summarizeBy: none
+		sourceColumn: RouteID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Route
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: 24181357-3c5a-4822-b989-59202cbec66b
+		summarizeBy: none
+		sourceColumn: Route
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimRoute = m
+		mode: directQuery
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-AMT4A81", "BBSDW"),
+				    dbo_DimRoute = Source{[Schema="dbo",Item="DimRoute"]}[Data]
+				in
+				    dbo_DimRoute
+
+	annotation PBI_ResultType = Table
+
